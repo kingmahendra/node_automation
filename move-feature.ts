@@ -42,26 +42,26 @@ export function withMoveFeatureOptions(yargs: Argv): Argv<MoveFeatureArgs> {
 export function moveFeatureHandler(parsedArgs: MoveFeatureArgs): Promise<void> {
   const src = path.join(path.resolve(), parsedArgs.source);
   const dest = path.join(path.resolve(), parsedArgs.destination);
-  // if(fs.existsSync(dest)) {
-  //     console.log('Destination directory already exist.');
-  //     process.exit(1);
-  //    // return;
-  // }
+  if(fs.existsSync(dest)) {
+      console.log('Destination directory already exist.');
+      process.exit(1);
+    // return;
+  }
   // move directory to new location
 
-  // moveDirectory(src, dest)
-  //  .then(() => {
-  //     updateExtendsInTsConfig(dest)
-  //     updateEsLintrc(dest);
-  //     updateJestConfig(dest);
-  //     updateOutDirPath(dest);
-  //     updateProjectJson(src, dest);
-  //     updateFeaturePath("workspace.json", src, dest);
-  //     updateFeaturePath("tsconfig.base.json", src, dest);
-  //     updateFeaturePath("code-owners.json", src, dest);
-  //  });
+  moveDirectory(src, dest)
+   .then(() => {
+      updateExtendsInTsConfig(dest)
+      updateEsLintrc(dest);
+      updateJestConfig(dest);
+      updateOutDirPath(dest);
+      updateProjectJson(src, dest);
+      updateFeaturePath("workspace.json", src, dest);
+      updateFeaturePath("tsconfig.base.json", src, dest);
+      updateFeaturePath("code-owners.json", src, dest);
+   });
 
-  updateFeaturePath("code-owners.json", src, dest);
+  // updateFeaturePath("code-owners.json", src, dest);
   return Promise.resolve();
 }
 
