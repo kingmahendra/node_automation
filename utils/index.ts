@@ -82,6 +82,7 @@ export async function updateFeaturePath(filePath, src, dest){
   const find = src.substring(src.indexOf("libs/features"));
   const replace = dest.substring(dest.indexOf("libs/features"));
   await updateJSONFile(filePath, find, replace);
+  console.log(`The ${path.basename(filePath)} has been updated!`);
 }
 
 async function updatePreset(filePath: string, newPreset: string): Promise<void> {
@@ -90,6 +91,7 @@ async function updatePreset(filePath: string, newPreset: string): Promise<void> 
     data = data.replace(/preset:.*,/g, `preset: '${newPreset}',`);
     await fs.writeFile(filePath, data);
     Promise.resolve();
+    console.log(`The ${path.basename(filePath)} has been updated!`);
   } catch (err) {
     console.error(err);
     Promise.reject(); 
@@ -118,7 +120,7 @@ async function modifyPropertyInJsonFile(
     // Write the modified object back to the file
     await fs.writeJson(filePath, jsonObject, { spaces: 2 });
     Promise.resolve();
-    console.log("The file has been saved!");
+    console.log(`The ${path.basename(filePath)} has been updated!`);
   } catch (err) {
     console.error(err);
     Promise.reject();
