@@ -1,0 +1,29 @@
+{
+  "extends": "../../../../tsconfig.base.json",
+  "compilerOptions": {
+    "types": [
+      "node",
+      "jest"
+    ],
+    "strict": true,
+    "noImplicitAny": true,
+    "target": "es2020"
+  },
+  "ts-node": {
+    "compilerOptions": {
+      "module": "commonjs",
+      "strict": true,
+      "noImplicitAny": true
+    }
+  },
+  "include": [],
+  "files": [],
+  "references": [
+    {
+      "path": "./tsconfig.lib.json"
+    },
+    {
+      "path": "./tsconfig.spec.json"
+    }
+  ]
+}

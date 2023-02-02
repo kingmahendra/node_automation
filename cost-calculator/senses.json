@@ -1,0 +1,9 @@
+{
+  "sensesEverywhere": [
+    {
+      "element": "senses-feature-cost-calculator",
+      "protobuf": "globalsites.feature.investments-cost-calculator",
+      "views": ["default"]
+    }
+  ]
+}

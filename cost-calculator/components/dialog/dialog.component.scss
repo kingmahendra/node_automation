@@ -1,0 +1,38 @@
+.cost-table-cell {
+  width: 144px;
+}
+
+.min-per-qtr {
+  width: max-content;
+}
+
+.content-header {
+  color: #19197c;
+  font-style: normal;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+}
+
+.bottom-right-corner-parent {
+  position: relative;
+}
+
+.bottom-right-corner-child {
+  position: absolute;
+  right: 12px;
+  bottom: 0;
+}
+
+.bottom-right-corner-child1 {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
+@media (max-device-width: 414px) {
+  .col-max-width-mobile {
+    max-width: 50%;
+    font-size: 16px;
+  }
+}

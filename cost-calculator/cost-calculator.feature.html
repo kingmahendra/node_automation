@@ -1,0 +1,272 @@
+<div class="sfc-container cost-cal-main sfc-margin-t-4 sfc-padding-0" translate>
+  <div class="invs-cost-calculator-loading" *ngIf="isLoadingState === true">
+    <div class="sfc-col-auto sfc-padding-4">
+      <sfc-loading-state id="loader" state="loading" size="lg">
+      </sfc-loading-state>
+    </div>
+  </div>
+  <div class="invs-cost-calculator-container" *ngIf="isLoadingState === false">
+    <div
+      class="sfc-container-fluid cost-cal-fluid-container"
+      [ngClass]="{
+        'desktop-bg-ext-height': isAdditionalInfoContentPresent && isDesktop,
+        'desktop-bg': !isAdditionalInfoContentPresent && isDesktop
+      }"
+    >
+      <div class="sfc-row cost-calc-sub">
+        <div
+          class="sfc-col-xs-12 sfc-col-sm-12 sfc-col-md-12 sfc-col-lg-4 sfc-col-xl-4 cost-calc-deposit cost-calc-characteristics"
+        >
+          <div class="sfc-margin-t-3 sfc-margin-b-3">
+            <span class="cost-calculator-header">
+              {{'DEPOSIT_AMOUNT_HEADER' | translate}}
+            </span>
+          </div>
+          <sfc-input-money
+            name="{{'DEPOSIT_AMOUNT_HEADER' | translate}}"
+            decimal="false"
+            [value]="investmentAmount"
+            (sfcChange)="updateValue($event)"
+            max="10000000"
+            decimals="false"
+            (sfcFocus)="onInputMoneyFocus()"
+            class="input-money-padding-mobile"
+          ></sfc-input-money>
+          <sfc-button
+            class="sfc-space-offset-t-md bebreken-button"
+            [ngClass]="{
+        'add-extra-padding-bottom': isAdditionalInfoContentPresent && isDesktop,
+        'remove-extra-padding-bottom': !isAdditionalInfoContentPresent && isDesktop
+      }"
+            color="primary"
+            (click)="calculateCosts(investmentAmount)"
+            translate
+          >
+            BERREKEN_BUTTON_TEXT
+          </sfc-button>
+        </div>
+        <div
+          class="sfc-col-xs-12 sfc-col-sm-12 sfc-col-md-12 sfc-col-lg-8 sfc-col-xl-8 cost-calc-card"
+        >
+          <sfc-card>
+            <sfc-card-content class="cost-calc-card-content">
+              <div
+                class="sfc-col-12 sfc-display-flex sfc-justify-content-start sfc-padding-0"
+              >
+                <div
+                  class="sfc-util-margin-double-bottom sfc-util-margin-double-top"
+                >
+                  <div
+                    class="cost-calculator-header sfc-margin-t-2 sfc-margin-b-3"
+                  >
+                    {{productCode + '_COSTS_RBB' | translate}}
+                    <div class="sfc-row sfc-text">
+                      {{'COSTS_PERIOD' | translate}}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="sfc-col-12 sfc-display-flex sfc-justify-content-between sfc-flex-grow-1 sfc-margin-b-2 sfc-padding-0"
+              >
+                <div class="sfc-col-xs-8 sfc-margin-r-1">
+                  <div class="sfc-text cost-calc-table">
+                    {{'BASE_SERVICES' | translate}}
+                    <sfc-popover
+                      heading="{{'BASE_SERVICES' | translate}}"
+                      quality="beta"
+                    >
+                      <p
+                        slot="content"
+                        class="sfc-paragraph sfc-space-offset-t-sm"
+                      >
+                        {{'PASV_BASE_SERVICES_TOOLTIP' | translate}}
+                      </p>
+                    </sfc-popover>
+                  </div>
+                </div>
+                <div class="sfc-col-xs-4 cost-calc-table sfc-margin-t-1">
+                  <sfc-output-money
+                    [amount]="baseCostsPerQuarter"
+                    placeholder="5"
+                  ></sfc-output-money>
+                </div>
+              </div>
+              <div
+                class="sfc-col-12 sfc-display-flex sfc-margin-b-2 sfc-justify-content-between sfc-flex-grow-1 sfc-margin-b-2 sfc-padding-0"
+              >
+                <div class="sfc-col-xs-8 sfc-margin-r-1">
+                  <div class="sfc-text cost-calc-table">
+                    {{'PASV_PORTFOLIO_SERVICES' | translate}}
+                    <sfc-popover
+                      heading="{{'PASV_PORTFOLIO_SERVICES' | translate}}"
+                      quality="beta"
+                    >
+                      <p
+                        slot="content"
+                        class="sfc-paragraph sfc-space-offset-t-sm"
+                      >
+                        {{'PASV_PORTFOLIO_SERVICES_TOOLTIP' | translate}}
+                      </p>
+                    </sfc-popover>
+                  </div>
+                </div>
+                <div class="sfc-col-xs-4 cost-calc-table sfc-margin-t-1">
+                  <sfc-output-money
+                    amount="{{portfolioCostsPerQuarter}}"
+                    placeholder="2"
+                  ></sfc-output-money>
+                </div>
+              </div>
+              <div class="sfc-display-flex">
+                <div class="sfc-flex-grow-1 sfc-text--align-l beleggen-product">
+                  <div class="sfc-text cost-calc-table cost-invsp-text">
+                    {{'COST_IN_INVESTMENT_PRODUCTS_TEXT' | translate}}
+                    <sfc-popover
+                      heading="{{'COST_IN_INVESTMENT_PRODUCTS_TEXT' | translate}}"
+                      quality="beta"
+                    >
+                      <p
+                        slot="content"
+                        class="sfc-paragraph sfc-space-offset-t-sm"
+                      >
+                        {{'PASV_FUND_SERVICES_TOOLTIP' | translate}}
+                      </p>
+                    </sfc-popover>
+                  </div>
+                </div>
+                <div
+                  *ngIf="productCode==='PASV'"
+                  class="sfc-text--align-r sfc-text invst-cost-max-per-qtr-pasv"
+                >
+                  <div class="">
+                    <sfc-output-money
+                      amount="{{investmentCostsMaxPerQuarter}}"
+                    ></sfc-output-money>
+                  </div>
+                </div>
+                <div
+                  *ngIf="productCode!=='PASV'"
+                  class="sfc-text--align-r sfc-text invst-cost-max-per-qtr-actv-acts"
+                >
+                  <div class="sfc-display-inline investmentCostsMinPerQuarter">
+                    <sfc-output-money
+                      amount="{{investmentCostsMinPerQuarter}}"
+                    ></sfc-output-money>
+                  </div>
+                  <div class="sfc-display-inline investmentCostsMinPerQuarter">
+                    &nbsp;<span>-</span>&nbsp;
+                    <div class="sfc-display-inline">
+                      <sfc-output-money
+                        amount="{{investmentCostsMaxPerQuarter}}"
+                      ></sfc-output-money>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="sfc-display-flex sfc-margin-t-3">
+                <div class="sfc-flex-grow-1 sfc-text--align-l sfc-margin-b-4">
+                  <div
+                    class="sfc-text yearly-cost-calc-characteristics sfc-text--weight-semi-bold"
+                  >
+                    {{'PASV_YEARLY_COST' | translate}}
+                  </div>
+                </div>
+                <div
+                  *ngIf="productCode ==='PASV'"
+                  class="sfc-text--align-r sfc-text--weight-semi-bold"
+                >
+                  <div class="investmentyearlyCostsMin">
+                    <sfc-output-money
+                      amount="{{yearlyCostsMax}}"
+                    ></sfc-output-money>
+                  </div>
+                </div>
+                <div
+                  *ngIf="productCode!=='PASV'"
+                  class="sfc-text--align-r sfc-text--weight-semi-bold"
+                >
+                  <div class="sfc-display-inline investmentyearlyCostsMin">
+                    <sfc-output-money
+                      amount="{{yearlyCostsMin}}"
+                    ></sfc-output-money>
+                  </div>
+                  <div class="sfc-display-inline investmentyearlyCostsMin">
+                    &nbsp;<span> - </span>
+                    <div class="sfc-display-inline">
+                      <sfc-output-money
+                        amount="{{yearlyCostsMax}}"
+                      ></sfc-output-money>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="sfc-col-12 sfc-margin-t-2 sfc-margin-b-4 sfc-padding-0"
+              >
+                <hr class="sfc-divider" />
+              </div>
+              <div
+                *ngIf="disclaimerText !== '' || disclaimerText !== undefined"
+                class="sfc-col-12 sfc-text sfc-space-offset-t-lg cost-calc-table sfc-padding-l-0"
+                translate
+              >
+                {{disclaimerText}}
+              </div>
+              <!-- Modal Link -->
+              <div
+                class="sfc-col-12 isc-rc-attention-text sfc-col-12 sfc-padding-t-2 cost-calc-berekening-text sfc-margin-b-3 sfc-padding-l-0"
+                (click)="openModal('cost-table-dialog')"
+                translate
+              >
+                {{'COSTS_TABLE_LINK' | translate}}
+              </div>
+
+              <!-- AdditionalInfoContent Link -->
+              <div
+                class="isc-rc-attention-text sfc-col-12 sfc-padding-b-3 sfc-padding-l-0"
+                *ngIf="additionalInfoLinkText"
+                (click)="openModal('additional-info-dialog')"
+              >
+                <div class="sfc-row">
+                  <div class="cost-calc-berekening-text" translate>
+                    {{additionalInfoLinkText}}
+                  </div>
+                </div>
+              </div>
+            </sfc-card-content>
+            <!-- End of Modal Link -->
+          </sfc-card>
+        </div>
+      </div>
+    </div>
+    <!-- AdditionalInfoContent Modal content -->
+    <sfc-modal id="cost-table-dialog" backdrop-dismiss="true" sensesSfcModalFix>
+      <span slot="title" class="cost-table-append-negative-margin-8" translate
+        >COSTS_TABLE_LINK</span
+      >
+      <div slot="body">
+        <feature-cost-table-dialog [productCode]="productCode">
+        </feature-cost-table-dialog>
+      </div>
+    </sfc-modal>
+    <!-- End of modal content -->
+    <!-- Modal content -->
+    <sfc-modal
+      id="additional-info-dialog"
+      backdrop-dismiss="true"
+      sensesSfcModalFix
+    >
+      <span
+        slot="title"
+        class="cost-table-append-negative-margin-8"
+        translate
+      ></span>
+      <div slot="body">
+        <div [innerHtml]="additionalInfoContent"></div>
+      </div>
+    </sfc-modal>
+    <!-- End of modal content -->
+  </div>
+</div>

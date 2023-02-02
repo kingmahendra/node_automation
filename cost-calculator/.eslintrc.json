@@ -1,0 +1,26 @@
+{
+  "extends": ["../../../../.eslintrc.json"],
+  "ignorePatterns": ["!**/*"],
+  "overrides": [
+    {
+      "files": ["*.ts"],
+      "extends": ["plugin:@senses/eslint/angular"],
+      "rules": {}
+    },
+    {
+      "files": ["*.spec.ts"],
+      "extends": ["plugin:@senses/eslint/jest"],
+      "rules": {}
+    },
+    {
+      "files": ["*.html"],
+      "extends": ["plugin:@senses/eslint/angular-template"],
+      "rules": {}
+    },
+    {
+      "files": ["*.json"],
+      "extends": ["plugin:@senses/eslint/json"],
+      "rules": {}
+    }
+  ]
+}

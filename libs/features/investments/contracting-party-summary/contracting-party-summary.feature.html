@@ -1,0 +1,108 @@
+<agreement-summary-card-header
+  [config]="headerConfig"
+  (editClicked)="onContractingPartyEdit()"
+  (resetClicked)="openModal()"
+>
+</agreement-summary-card-header>
+
+<employee-only-banner-component
+  *ngIf="showEmployeeOnlyBanner"
+></employee-only-banner-component>
+
+<div
+  *ngIf="loading"
+  class="sfc-display-flex sfc-align-items-center sfc-justify-content-center"
+>
+  <sfc-loading-state state="loading"></sfc-loading-state>
+</div>
+
+<div class="sfc-row">
+  <div class="sfc-col-12">
+    <sfc-notification class="sfc-space-offset-t-md" type="error" *ngIf="error">
+      {{error}}
+    </sfc-notification>
+  </div>
+</div>
+
+<div id="contracting-party-content" class="sfc-row" *ngIf="!loading && !error">
+  <!-- start: notification section -->
+  <div class="sfc-col-12">
+    <div *ngIf="noValidationErrors(); else validationModal">
+      <sfc-notification type="info" *ngIf="containsAnyDraft()">
+        {{ 'CONTRACTS_MODIFIED_MESSAGE' | translate }}
+        <p class="sfc-space-offset-b-xxs" *ngIf="showActualizeMessage()">
+          {{ 'CONTRACTANTS_MODIFIED_MESSAGE' | translate }}
+        </p>
+      </sfc-notification>
+    </div>
+    <ng-template #validationModal>
+      <sfc-notification type="error">
+        {{ 'CONTRACTS_ERROR_MESSAGE' | translate }} <br />
+        <div
+          class="sfc-text-link sfc-text-link--inline"
+          (click)="openValidationModal()"
+        >
+          {{ 'MORE_INFO' | translate }}
+        </div>
+      </sfc-notification>
+    </ng-template>
+  </div>
+  <!-- end: notification section -->
+  <div id="contracting-parties" class="sfc-col-12 sfc-col-md-6 no-top-spacing">
+    <sfc-item is-link="false" chevron="false">
+      <span slot="label">{{ 'CONTRACTING_PARTIES' | translate }} </span>
+      <div slot="description" class="contracting-party-details">
+        <div *ngFor="let contractant of contractants">
+          {{contractant?.contactDetails?.displayName}}
+        </div>
+      </div>
+    </sfc-item>
+  </div>
+
+  <div id="ascription" class="sfc-col-12 sfc-col-md-6 no-top-spacing">
+    <sfc-item is-link="false" chevron="false">
+      <span slot="label">{{ 'ASCRIPTION' | translate }} </span>
+      <div slot="description" class="contracting-party-details">
+        <div>{{agreementVersion?.ascription?.raboRelationName}}</div>
+        <div>{{agreementVersion?.ascription?.addressLine?.split(",")[0]}}</div>
+        <div>{{agreementVersion?.ascription?.addressLine?.split(",")[1]}}</div>
+      </div>
+    </sfc-item>
+  </div>
+</div>
+
+<!-- Confirm Dialog to proceed with reset action -->
+<sfc-dialog
+  id="contracting-party-reset-dialog"
+  #contractingPartyResetDialog
+  data-senses="contracting-party-summary-reset-dialog"
+  type="confirm"
+  [attr.cancel-text]="getTranslatedLabel('CANCEL')"
+  [attr.confirm-text]="getTranslatedLabel('CONFIRM')"
+  (sfcDialogDidDismiss)="handleResetDialog($event)"
+>
+  <span slot="header">{{'RESET'| translate}}</span>
+  <span slot="body" translate> RESET_DIALOG_TEXT </span>
+</sfc-dialog>
+<!-- End : Confirm Dialog to proceed with reset action -->
+
+<!-- Start of Validation modal-->
+<sfc-modal #contractingPartyValidationDialog id="cp-validation-dialog">
+  <span slot="title" translate> CONTRACTS_ERROR_MESSAGE_TITLE </span>
+  <div slot="body">
+    <ul class="validation-error-messages">
+      <li *ngFor="let item of validationErrors">
+        <sfc-message variant="error" *ngIf="item.severity ==='ERROR'"
+          >{{item.message}}</sfc-message
+        >
+        <sfc-message variant="warning" *ngIf="item.severity ==='WARNING'"
+          >{{item.message}}</sfc-message
+        >
+        <sfc-message variant="info" *ngIf="item.severity ==='INFO'"
+          >{{item.message}}</sfc-message
+        >
+      </li>
+    </ul>
+  </div>
+</sfc-modal>
+<!-- End : Validation Modal-->

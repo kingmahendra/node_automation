@@ -1,0 +1,143 @@
+<div>
+  <div class="sfc-row sfc-no-gutters content-header">
+    {{ 'BASE_SERVICES' | translate }}*
+  </div>
+  <div class="sfc-row sfc-no-gutters sfc-padding-b-2">
+    <div class="sfc-col sfc-text--align-l col-max-width-mobile">
+      <p class="sfc-text sfc-heading--size-md min-per-qtr" translate>
+        MINIMUM_PER_QUATER
+      </p>
+    </div>
+    <div class="sfc-col sfc-text sfc-text--align-r col-max-width-mobile">
+      <span>{{ productCode + '_MINIMUM_PER_QUATER_VALUE' | translate }}</span>
+    </div>
+  </div>
+  <div class="sfc-row sfc-no-gutters sfc-padding-b-2">
+    <div class="sfc-col sfc-text--align-l col-max-width-mobile">
+      <p class="sfc-text cost-table-cell sfc-heading--size-md" translate>
+        BASE_SERVICES_COSTS_TEXT1
+      </p>
+    </div>
+    <div class="sfc-col sfc-text sfc-text--align-r col-max-width-mobile">
+      <span>{{
+        productCode + '_BASE_SERVICES_COSTS_TEXT1_VALUE' | translate
+      }}</span>
+    </div>
+  </div>
+  <div class="sfc-row sfc-no-gutters sfc-padding-b-2">
+    <div class="sfc-col sfc-text--align-l col-max-width-mobile">
+      <p class="sfc-text cost-table-cell sfc-heading--size-md" translate>
+        BASE_SERVICES_COSTS_TEXT2
+      </p>
+    </div>
+    <div
+      class="sfc-col sfc-text sfc-text--align-r col-max-width-mobile bottom-right-corner-parent"
+    >
+      <span class="bottom-right-corner-child1">{{
+        productCode + '_BASE_SERVICES_COSTS_TEXT2_VALUE' | translate
+      }}</span>
+    </div>
+  </div>
+  <div class="sfc-row sfc-padding-b-2">
+    <div class="sfc-col sfc-text--align-l col-max-width-mobile">
+      <p class="sfc-text cost-table-cell sfc-heading--size-md" translate>
+        BASE_SERVICES_COSTS_TEXT3
+      </p>
+    </div>
+    <div
+      class="sfc-col sfc-text sfc-text--align-r col-max-width-mobile bottom-right-corner-parent"
+    >
+      <span class="bottom-right-corner-child">{{
+        productCode + '_BASE_SERVICES_COSTS_TEXT3_VALUE' | translate
+      }}</span>
+    </div>
+  </div>
+  <div class="sfc-row sfc-padding-b-2">
+    <div class="sfc-col sfc-text--align-l col-max-width-mobile">
+      <p class="sfc-text cost-table-cell sfc-heading--size-md" translate>
+        BASE_SERVICES_COSTS_TEXT4
+      </p>
+    </div>
+    <div
+      class="sfc-col sfc-text sfc-text--align-r col-max-width-mobile bottom-right-corner-parent"
+    >
+      <span class="bottom-right-corner-child">{{
+        productCode + '_BASE_SERVICES_COSTS_TEXT4_VALUE' | translate
+      }}</span>
+    </div>
+  </div>
+  <div class="sfc-row sfc-padding-b-2">
+    <div class="sfc-col sfc-text--align-l">
+      <p class="sfc-text sfc-heading--size-md" translate>
+        BASE_SERVICES_COSTS_TEXT5
+      </p>
+    </div>
+  </div>
+  <!-- Start : Review comments related changes -->
+  <div class="sfc-row sfc-no-gutters sfc-margin-t-3 content-header">
+    {{ 'PASV_PORTFOLIO_SERVICES' | translate }}*
+  </div>
+  <div class="sfc-row sfc-padding-b-2" *ngIf="productCode !== 'PASV'">
+    <div class="sfc-col sfc-text--align-l col-max-width-mobile">
+      <p class="sfc-text sfc-heading--size-md min-per-qtr" translate>
+        MINIMUM_PER_QUATER
+      </p>
+    </div>
+    <div class="sfc-col sfc-text sfc-text--align-r col-max-width-mobile">
+      <span>{{
+        productCode + '_PORTFOLIO_MINIMUM_PER_QUARTER_VALUE' | translate
+      }}</span>
+    </div>
+  </div>
+  <div class="sfc-row sfc-padding-b-2">
+    <div class="sfc-col sfc-text--align-l col-max-width-mobile">
+      <p class="sfc-text cost-table-cell sfc-heading--size-md" translate>
+        BASE_SERVICES_COSTS_TEXT1
+      </p>
+    </div>
+    <div class="sfc-col sfc-text sfc-text--align-r col-max-width-mobile">
+      <span>{{
+        productCode + '_PORTFOLIO_SERVICES_COSTS_TEXT1_VALUE' | translate
+      }}</span>
+    </div>
+  </div>
+  <div class="sfc-row sfc-padding-b-2">
+    <div class="sfc-col sfc-text--align-l col-max-width-mobile">
+      <p class="sfc-text cost-table-cell sfc-heading--size-md" translate>
+        {{ productCode + '_PORTFOLIO_SERVICES_COSTS_TEXT2' }}
+      </p>
+    </div>
+    <div
+      class="sfc-col sfc-text sfc-text--align-r col-max-width-mobile bottom-right-corner-parent"
+    >
+      <span class="bottom-right-corner-child">{{
+        productCode + '_PORTFOLIO_SERVICES_COSTS_TEXT2_VALUE' | translate
+      }}</span>
+    </div>
+  </div>
+  <div class="sfc-row sfc-padding-b-2">
+    <div class="sfc-col sfc-text--align-l">
+      <p class="sfc-text sfc-heading--size-md" translate>
+        {{ productCode + '_PORTFOLIO_SERVICES_COSTS_TEXT3' }}
+      </p>
+    </div>
+  </div>
+  <div
+    class="sfc-row sfc-no-gutters sfc-margin-b-2 sfc-margin-t-3 content-header"
+    translate
+  >
+    {{ productCode + '_COST_IN_INVESTMENT_PRODUCTS_TEXT' }}
+  </div>
+  <div class="sfc-row sfc-margin-b-4 sfc-text" translate>
+    {{ productCode + '_COST_IN_INVESTMENT_PRODUCTS_TEXT_VALUE' }}
+  </div>
+  <!-- End :  Review comments related changes -->
+  <div class="sfc-row sfc-margin-b-4">
+    <div class="sfc-col-12 sfc-text" translate>SINGLE_ASTERIKS_NOTE_TEXT</div>
+  </div>
+  <div class="sfc-row sfc-margin-b-4">
+    <div class="sfc-col-12 sfc-text">
+      {{ productCode + '_DOUBLE_ASTERIKS_NOTE_TEXT' | translate }}
+    </div>
+  </div>
+</div>

@@ -1,0 +1,12 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../../../../dist/out-tsc/libs/features/investments/cost-calculator",
+    "module": "commonjs",
+    "types": ["node", "jest"],
+    "resolveJsonModule": true,
+    "preserveSymlinks": true,
+    "allowJs": true
+  },
+  "include": ["**/*.spec.ts", "**/*.d.ts", "jest.config.ts"]
+}

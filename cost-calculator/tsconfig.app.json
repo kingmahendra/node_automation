@@ -1,0 +1,10 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../../../../dist/out-tsc/libs/features/investments/cost-calculator",
+    "resolveJsonModule": true
+  },
+  "files": ["main.ts"],
+  "include": ["**/*.ts"],
+  "exclude": ["./test-setup.ts", "**/*.spec.ts", "jest.config.ts"]
+}

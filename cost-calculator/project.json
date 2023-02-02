@@ -1,0 +1,88 @@
+{
+  "name": "investments-cost-calculator",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/features/investments/cost-calculator",
+  "projectType": "library",
+  "prefix": "feature",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "options": {
+        "jestConfig": "libs/features/investments/cost-calculator/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "outputs": [
+        "{workspaceRoot}/coverage/libs/features/investments/cost-calculator"
+      ]
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/features/investments/cost-calculator/**/*.ts",
+          "libs/features/investments/cost-calculator/**/*.html",
+          "libs/features/investments/cost-calculator/**/*.json"
+        ]
+      }
+    },
+    "build": {
+      "executor": "ngx-build-plus:build",
+      "options": {
+        "outputPath": "./dist/everywhere/app/investments-cost-calculator",
+        "index": "./libs/features/investments/cost-calculator/index.html",
+        "tsConfig": "./libs/features/investments/cost-calculator/tsconfig.app.json",
+        "main": "./libs/features/investments/cost-calculator/main.ts",
+        "singleBundle": false,
+        "assets": [
+          {
+            "glob": "**/*",
+            "input": "node_modules/@sfc/components/dist",
+            "output": "./sfc/components"
+          },
+          {
+            "glob": "**/*",
+            "input": "node_modules/@sfc/style/css",
+            "output": "./sfc/style"
+          }
+        ],
+        "scripts": [
+          "node_modules/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js"
+        ]
+      },
+      "configurations": {
+        "production": {
+          "sourceMap": false,
+          "optimization": true,
+          "namedChunks": false,
+          "outputHashing": "none",
+          "aot": true,
+          "extractLicenses": false,
+          "vendorChunk": false,
+          "buildOptimizer": true,
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "2mb",
+              "maximumError": "5mb"
+            }
+          ],
+          "fileReplacements": [
+            {
+              "replace": "libs/everywhere/everywhere-environment/src/environment.ts",
+              "with": "libs/everywhere/everywhere-environment/src/environment.prod.ts"
+            }
+          ],
+          "baseHref": "/investments-cost-calculator/"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "publish-artifact": {
+      "executor": "@senses/builders:publish-artifact",
+      "options": {
+        "publishStage": "test"
+      }
+    }
+  },
+  "tags": ["scope:shared", "type:feature"]
+}

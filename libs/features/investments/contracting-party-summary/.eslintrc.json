@@ -1,0 +1,21 @@
+{
+  "extends": [
+    "../config/.eslintrc.json"
+  ],
+  "rules": {
+    "@angular-eslint/component-selector": [
+      "off"
+    ]
+  },
+  "overrides": [
+    {
+      "files": [
+        "*.json"
+      ],
+      "extends": [
+        "plugin:@senses/eslint/json"
+      ],
+      "rules": {}
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+.word-break-all {
+  word-break: break-all;
+}
+
+div.sfc-text-link {
+  cursor: pointer;
+}
+
+.validation-error-messages {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.validation-error-messages li {
+  margin-top: 12px;
+}
+
+.no-top-spacing {
+  margin-top: -16px;
+}
+
+.contracting-party-details {
+  font-size: var(--sfc-font-size-sm);
+}
+
+.contracting-party-details > div {
+  margin-top: 4px;
+}

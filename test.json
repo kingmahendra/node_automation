@@ -1,0 +1,35 @@
+{
+  "name": "investments-contracting-party-summary",
+  "$schema": "../../../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/features/investments/sales/agreements/contracting-party-summary",
+  "projectType": "library",
+  "prefix": "feature",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "options": {
+        "jestConfig": "libs/features/investments/sales/agreements/contracting-party-summary/jest.config.ts",
+        "exclude": [
+          "**/node_modules/**"
+        ],
+        "passWithNoTests": true
+      },
+      "outputs": [
+        "{workspaceRoot}/coverage/libs/features/investments/sales/agreements/contracting-party-summary"
+      ]
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/features/investments/sales/agreements/contracting-party-summary/**/*.{ts,html}",
+          "libs/features/investments/sales/agreements/contracting-party-summary/**/*.json"
+        ]
+      }
+    }
+  },
+  "tags": [
+    "scope:shared",
+    "type:feature"
+  ]
+}

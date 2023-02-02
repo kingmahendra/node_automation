@@ -1,0 +1,330 @@
+.cost-cal-main {
+  margin-bottom: 63px;
+}
+
+.cost-calc-sub {
+  margin-left: 14px;
+}
+
+.remove-extra-padding-bottom {
+  margin-top: 166px;
+}
+
+.add-extra-padding-bottom {
+  margin-top: 190px;
+}
+
+.cost-calculator-header {
+  color: #19197c;
+  font-style: normal;
+  font-size: 28px;
+  font-weight: 300;
+  line-height: 40px;
+  font-family: var(--sfc-paragraph-font);
+}
+
+.desktop-bg {
+  background-color: #f6f6f6;
+  height: 360px;
+  box-shadow: 0 1px 2px 0 #f6f6f6;
+  padding-right: 14px;
+  padding-left: 10px;
+}
+
+.desktop-bg-ext-height {
+  background-color: #f6f6f6;
+  height: 390px;
+  box-shadow: 0 1px 2px 0 #f6f6f6;
+  padding-right: 14px;
+  padding-left: 10px;
+}
+
+.cost-calc-card {
+  margin-top: 24px;
+  margin-bottom: 24px;
+  padding-right: 24px;
+}
+
+.cost-calc-characteristics {
+  font-size: 21px;
+}
+
+.yearly-cost-calc-characteristics {
+  font-size: 21px;
+}
+
+.cost-calc-table {
+  font-size: 16px;
+}
+
+.cost-calc-berekening-text {
+  text-decoration: underline;
+  color: #009;
+  font-size: 16px;
+  line-height: 22px;
+  padding-left: 12px;
+  cursor: pointer;
+}
+
+.cost-table-append-negative-margin-8 {
+  text-align: center;
+}
+
+.cost-calc-deposit {
+  padding-left: 0;
+}
+
+.cost-calc-card-content {
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+.investmentCostsMaxPerQuarter {
+  font-size: 16px;
+}
+
+.investmentyearlyCostsMin {
+  font-size: 21px;
+  margin-left: -10px;
+}
+
+@media (max-device-width: 1024px) {
+  .bebreken-button {
+    margin-top: 235px;
+  }
+
+  .desktop-bg {
+    display: none;
+  }
+
+  .cost-cal-main {
+    background-color: #f6f6f6;
+    padding: 0;
+  }
+}
+@media (max-device-width: 768px) {
+  .bebreken-button {
+    margin-top: 24px;
+  }
+
+  .desktop-bg {
+    display: none;
+  }
+
+  .cost-cal-main {
+    background-color: #f6f6f6;
+    padding: 0;
+  }
+
+  .cost-calc-deposit {
+    padding-left: 12px;
+    padding-right: 24px;
+  }
+
+  .cost-calc-sub {
+    margin-left: 0;
+  }
+
+  .cost-calc-card {
+    padding-right: 24px;
+  }
+}
+
+@media (max-device-width: 414px) {
+  .input-money-padding-mobile {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .bebreken-button {
+    margin-top: 16px;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .cost-calc-card-content {
+    padding-right: 0;
+    padding-left: 0;
+  }
+
+  .cost-calc-characteristics {
+    font-size: 16px;
+    padding-right: 16px;
+    padding-left: 16px;
+  }
+
+  .yearly-cost-calc-characteristics {
+    font-size: 21px;
+  }
+
+  .cost-calc-card {
+    padding: 0;
+    margin-top: 32px;
+    margin-bottom: 24px;
+  }
+
+  .cost-cal-fluid-container {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .investmentCostsMinPerQuarter {
+    font-size: 16px;
+    float: right;
+    width: max-content;
+  }
+
+  .invst-cost-max-per-qtr-actv-acts {
+    margin-top: 7px;
+  }
+
+  .invst-cost-max-per-qtr-pasv {
+    margin-top: 0;
+  }
+
+  .cost-calc-sub {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .investmentyearlyCostsMin {
+    font-size: 21px;
+    float: right;
+  }
+
+  .cost-invsp-text {
+    padding-right: 12px;
+  }
+}
+@media (max-device-width: 375px) {
+  .input-money-padding-mobile {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .bebreken-button {
+    margin-top: 16px;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .cost-calc-card-content {
+    padding-right: 0;
+    padding-left: 0;
+  }
+
+  .cost-calc-sub {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .cost-cal-fluid-container {
+    padding-right: 0;
+  }
+
+  .yearly-cost-calc-characteristics {
+    font-size: 21px;
+  }
+
+  .investmentyearlyCostsMin {
+    font-size: 21px;
+    float: right;
+  }
+
+  .cost-calc-characteristics {
+    font-size: 16px;
+    padding-right: 16px;
+    padding-left: 16px;
+    margin-top: 20px;
+  }
+
+  .cost-calc-card {
+    padding: 0;
+    margin-top: 32px;
+    margin-bottom: 24px;
+  }
+
+  .investmentCostsMinPerQuarter {
+    font-size: 16px;
+    float: right;
+    width: max-content;
+  }
+
+  .invst-cost-max-per-qtr-actv-acts {
+    margin-top: 7px;
+  }
+
+  .invst-cost-max-per-qtr-pasv {
+    margin-top: 0;
+  }
+
+  .cost-invsp-text {
+    padding-right: 36px;
+  }
+}
+@media (max-device-width: 320px) {
+  .input-money-padding-mobile {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .bebreken-button {
+    margin-top: 16px;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .cost-calc-card-content {
+    padding-right: 0;
+    padding-left: 0;
+  }
+
+  .cost-calc-sub {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .cost-cal-fluid-container {
+    padding-right: 0;
+  }
+
+  .yearly-cost-calc-characteristics {
+    font-size: 16px;
+  }
+
+  .investmentyearlyCostsMin {
+    font-size: 16px;
+    float: right;
+    width: max-content;
+  }
+
+  .investmentCostsMinPerQuarter {
+    font-size: 16px;
+    float: right;
+    width: max-content;
+  }
+
+  .invst-cost-max-per-qtr-actv-acts {
+    margin-top: 7px;
+  }
+
+  .invst-cost-max-per-qtr-pasv {
+    margin-top: 25px;
+  }
+
+  .cost-calc-characteristics {
+    font-size: 16px;
+    padding-right: 16px;
+    padding-left: 16px;
+  }
+
+  .cost-calc-card {
+    padding: 0;
+    margin-top: 32px;
+    margin-bottom: 24px;
+  }
+
+  .cost-invsp-text {
+    padding-right: 21px;
+  }
+}

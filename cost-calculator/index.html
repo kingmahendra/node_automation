@@ -1,0 +1,40 @@
+<!--
+!! Important !!
+
+This index.html file is just for local development to test that the feature can be rendered as a custom element.
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>CostCalculator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script
+      type="module"
+      src="sfc/components/sfc-components/sfc-components.esm.js"
+    ></script>
+
+    <link rel="stylesheet" href="sfc/style/sfc-style.css" />
+  </head>
+
+  <body style="margin: 0">
+    <senses-feature-cost-calculator></senses-feature-cost-calculator>
+    <script>
+      // When needed, set the data property on the web component. The object that you pass
+      // to the property should represent the protobuff structure.
+      //
+      document.addEventListener('DOMContentLoaded', () => {
+        let component = document.querySelector(
+          'senses-feature-cost-calculator'
+        );
+        component.data = {
+          inlayAmount: '20000',
+          productTypeCode: 'ACTS',
+          disclaimerText: 'De kostentabel is gebseerd op de lange termijn.',
+          additionalInfoLinkText: 'Optional Link',
+          additionalInfoContent: 'additionalInfoContent',
+        };
+      });
+    </script>
+  </body>
+</html>
