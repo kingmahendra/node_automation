@@ -2,23 +2,21 @@ import { CommandModule } from "yargs";
 import { Arguments, Argv } from "yargs";
 import fs from "fs-extra";
 import path from "path";
+import * as readline from 'node:readline/promises'
+import { stdin as input, stdout as output } from 'node:process';
 import {
-  // updateExtendsInTsConfig,
-  // updateEsLintrc,
-  // updateJestConfig,
-  // updateOutDirPath,
-  // updateProjectJson,
-  // updateFeaturePath,
   modifyPropertyInJsonFile,
   updateJSONFile,
   updatePreset
-
 } from "./utils";
+import { exit } from "process";
 
 export interface MoveFeatureArgs extends Arguments {
   source: string;
   destination: string;
 }
+
+const rl = readline.createInterface({input, output});
 
 export const moveFeatureCommand: CommandModule = {
   command: "move",
@@ -43,15 +41,35 @@ export function withMoveFeatureOptions(yargs: Argv): Argv<MoveFeatureArgs> {
     );
 }
 
-export function moveFeatureHandler(parsedArgs: MoveFeatureArgs): Promise<void> {
+export async function moveFeatureHandler(parsedArgs: MoveFeatureArgs): Promise<void> {
+
+  const isDestinationOk = parsedArgs.destination.indexOf("libs/features") !== -1;
+  if(!isDestinationOk) {
+    console.log('Destination should be inside libs/features.');
+    process.exit(1);
+  }
+
+  const answer = await rl.question(`Are you sure to move feature \n
+    from: ${parsedArgs.source} \n
+    to: ${parsedArgs.destination}\n
+    (y|n)
+  `);
+  rl.close();
+
+  if(answer !=='y') {
+    exit(1);
+  }
+ 
   const src = path.join(path.resolve(), parsedArgs.source);
   const dest = path.join(path.resolve(), parsedArgs.destination);
+
   if(fs.existsSync(dest)) {
       console.log('Destination directory already exist.');
       process.exit(1);
-    // return;
   }
+
   // move directory to new location
+  console.log('Moving features.......');
 
   moveDirectory(src, dest)
    .then(() => {
