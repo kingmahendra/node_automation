@@ -2,12 +2,12 @@ import { CommandModule } from "yargs";
 import { Arguments, Argv } from "yargs";
 import fs from "fs-extra";
 import path from "path";
-import * as readline from 'node:readline/promises'
-import { stdin as input, stdout as output } from 'node:process';
+import * as readline from "node:readline/promises";
+import { stdin as input, stdout as output } from "node:process";
 import {
   modifyPropertyInJsonFile,
   updateJSONFile,
-  updatePreset
+  updatePreset,
 } from "./utils";
 import { exit } from "process";
 
@@ -16,11 +16,12 @@ export interface MoveFeatureArgs extends Arguments {
   destination: string;
 }
 
-const rl = readline.createInterface({input, output});
+const rl = readline.createInterface({ input, output });
 
 export const moveFeatureCommand: CommandModule = {
   command: "move",
-  describe: "Move feature from one directory to new directory",
+  describe:
+    "Move feature from one directory to new directory inside libs/features in senses and updates related configs files",
   builder: withMoveFeatureOptions,
   handler: moveFeatureHandler,
 };
@@ -41,11 +42,13 @@ export function withMoveFeatureOptions(yargs: Argv): Argv<MoveFeatureArgs> {
     );
 }
 
-export async function moveFeatureHandler(parsedArgs: MoveFeatureArgs): Promise<void> {
-
-  const isDestinationOk = parsedArgs.destination.indexOf("libs/features") !== -1;
-  if(!isDestinationOk) {
-    console.log('Destination should be inside libs/features.');
+export async function moveFeatureHandler(
+  parsedArgs: MoveFeatureArgs
+): Promise<void> {
+  const isDestinationOk =
+    parsedArgs.destination.indexOf("libs/features") !== -1;
+  if (!isDestinationOk) {
+    console.log("Destination should be inside libs/features.");
     process.exit(1);
   }
 
@@ -56,32 +59,31 @@ export async function moveFeatureHandler(parsedArgs: MoveFeatureArgs): Promise<v
   `);
   rl.close();
 
-  if(answer !=='y') {
+  if (answer !== "y") {
     exit(1);
   }
- 
+
   const src = path.join(path.resolve(), parsedArgs.source);
   const dest = path.join(path.resolve(), parsedArgs.destination);
 
-  if(fs.existsSync(dest)) {
-      console.log('Destination directory already exist.');
-      process.exit(1);
+  if (fs.existsSync(dest)) {
+    console.log("Destination directory already exist.");
+    process.exit(1);
   }
 
   // move directory to new location
-  console.log('Moving features.......');
+  console.log("Moving features.......");
 
-  moveDirectory(src, dest)
-   .then(() => {
-      updateExtendsInTsConfig(dest)
-      updateEsLintrc(dest);
-      updateJestConfig(dest);
-      updateOutDirPath(dest);
-      updateProjectJson(src, dest);
-      updateFeaturePath("workspace.json", src, dest);
-      updateFeaturePath("tsconfig.base.json", src, dest);
-      updateFeaturePath("code-owners.json", src, dest);
-   });
+  moveDirectory(src, dest).then(() => {
+    updateExtendsInTsConfig(dest);
+    updateEsLintrc(dest);
+    updateJestConfig(dest);
+    updateOutDirPath(dest);
+    updateProjectJson(src, dest);
+    updateFeaturePath("workspace.json", src, dest);
+    updateFeaturePath("tsconfig.base.json", src, dest);
+    updateFeaturePath("code-owners.json", src, dest);
+  });
 
   // updateFeaturePath("code-owners.json", src, dest);
   return Promise.resolve();
@@ -166,14 +168,14 @@ export async function updateProjectJson(src, dest) {
   // update $schema with value with path relative to destination
   await modifyPropertyInJsonFile(
     destFilePath,
-    '$schema',
+    "$schema",
     relativeBaseProjectSchemaPath
   );
 
-  updateFeaturePath(destFilePath,src, dest);
+  updateFeaturePath(destFilePath, src, dest);
 }
 
-export async function updateFeaturePath(filePath, src, dest){
+export async function updateFeaturePath(filePath, src, dest) {
   const find = src.substring(src.indexOf("libs/features"));
   const replace = dest.substring(dest.indexOf("libs/features"));
   await updateJSONFile(filePath, find, replace);
